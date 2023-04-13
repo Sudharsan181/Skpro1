@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
 import "./internal.css";
 import axios from "axios";
+import Bill from "./invoice";
+
 const Menu = () => {
   const [showEmployeeDetails, setShowEmployeeDetails] = useState(false);
   const [showIncomeDetails, setShowIncomeDetails] = useState(false);
   const [showExpenseDetails, setShowExpenseDetails] = useState(false);
   const [drilldown3Visible, setDrilldown3Visible] = useState(false);
+  const [drilldown4Visible, setDrilldown4Visible] = useState(false);
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -57,6 +60,9 @@ const Menu = () => {
   const toggleDrilldown3 = () => {
     setDrilldown3Visible(!drilldown3Visible);
   };
+  const toggleDrilldown4 = () => {
+    setDrilldown4Visible(!drilldown4Visible)
+  }
   return (
     <div className="menu">
       <div className="menu-logo">SK Farms & Stockers</div>
@@ -73,6 +79,7 @@ const Menu = () => {
             <a href="#" onClick={handleIncomeDetailsClick}>Income Details</a>
             <a href="#" onClick={handleExpenseDetailsClick}>Expenses Details</a>
             <a  href="#" onClick={toggleDrilldown3}>Records&Details</a>
+            <a href="#" onClick={toggleDrilldown4}>Invoice</a>
           </div>
         </div>
         <div className="menu-nav-item">
@@ -179,6 +186,11 @@ const Menu = () => {
               ))}
             </tbody>
           </table></div>
+        </div>
+      )}
+      {drilldown4Visible &&(
+        <div className="drilldown4">
+          <Bill />
         </div>
       )}
     </div>

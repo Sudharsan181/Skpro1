@@ -150,7 +150,7 @@ fetch('https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&sym
       <nav>
         <ul>
           <li>
-            <a href="#">Home</a>
+            <a href="https://sudharssan181.github.io/portfolio/">Home</a>
           </li>
           <li>
             <a href="#">About</a>

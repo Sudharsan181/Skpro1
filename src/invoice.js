@@ -14,6 +14,7 @@ const [invoiceDate, setInvoiceDate] = useState(today.toISOString().substr(0, 10)
 const [dueDate, setDueDate] = useState(lastDayOfMonth.toISOString().substr(0, 10)); // set to last date of month
 const [total, setTotal] = useState(0);
 const [items, setItems] = useState([{ name: '', quantity: '', price: '' }]);
+const [showPopup, setShowPopup] = useState(false); // Add this state to control the popup visibility
 
   const addItem = () => {
     setItems([...items, { name: '', quantity: '', price: '' }]);
@@ -108,6 +109,13 @@ const [items, setItems] = useState([{ name: '', quantity: '', price: '' }]);
     generatePDF();
     // print the invoice
   }
+  const togglePopup = () => {
+    setShowPopup(!showPopup);
+  };
+
+  const additem = () => {
+    togglePopup(); // Show the popup when an item is added
+  };
 
   return (
     <div className="invoice-form">
@@ -183,7 +191,24 @@ const [items, setItems] = useState([{ name: '', quantity: '', price: '' }]);
         <button type="submit" className="inv-submit">
           Print
         </button>
+        <button type='button' className='Additem' onClick={additem}>AddItems</button>
       </form>
+       {/* Render the popup with the list and prices fields */}
+       {showPopup && (
+        <div className="additem-popup">
+          <label>
+            Name:
+            <input type="text" />
+          </label>
+          <label>
+            Price:
+            <input type="number" />
+          </label>
+          <button>Add</button>
+          <button onClick={togglePopup}>Cancel</button>
+        </div>
+      )}
+      {/* Render the rest of the form */}
     </div>
   );  
 };

@@ -562,3 +562,14 @@ td, th {
 .invoice-form button:hover {
   background-color: #3e8e41;
 }
+.additem-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  padding: 20px;
+  z-index: 9999;
+}

@@ -19,22 +19,27 @@ const Menu = () => {
     .catch(error => {
       console.log(error);
     });
-    }, []);
+  }, []);
 
   const [name, setname] = useState("");
   const [dateofjoin, setdateofjoin] = useState("");
   const [salary, setsalary] = useState("");
   const [appeared, setappeared] = useState("");
+  const [image, setImage] = useState(null);
 
   const handleEmployeeSubmit = (event) => {
     event.preventDefault();
 
-    axios.post("/api/employees", {
-      name,
-      dateofjoin,
-      salary,
-      appeared,
-    })
+    const formData = new FormData();
+    formData.append("name", name);
+    formData.append("dateofjoin", dateofjoin);
+    formData.append("salary", salary);
+    formData.append("appeared", appeared);
+    if (image) {
+      formData.append("image", image);
+    }
+
+    axios.post("/api/employees", formData)
     .then(response => {
       console.log(response.data);
       // clear the form
@@ -42,12 +47,13 @@ const Menu = () => {
       setdateofjoin("");
       setsalary("");
       setappeared("");
+      setImage(null);
     })
     .catch(error => {
       console.log(error);
     });
   };
- 
+
   const handleEmployeeDetailsClick = () => {
     setShowEmployeeDetails(!showEmployeeDetails);
   }
@@ -101,24 +107,26 @@ const Menu = () => {
       {showEmployeeDetails && (
         <div className="employee-details-container">
           <div className="employee-details-title">Employee Details</div>
-          <form className="employee-details-form" onSubmit={handleEmployeeSubmit}>
-            <label htmlFor="name">Name</label>
-            <input type="text" id="name" name="name" placeholder="Employee Name"  value={name} onChange={(e) => setname(e.target.value)} required/>
-            <label htmlFor="date-of-join">Date of Join</label>
-            <input type="date" id="dateofjoin" name="dateofjoin" value={dateofjoin} onChange={(e) => setdateofjoin(e.target.value)}  required/>
-            <label htmlFor="salary">Salary</label>
-            <input type="text" id="salary" name="salary" placeholder="Salary" value={salary} onChange={(e) => setsalary(e.target.value)} required />
-            <label htmlFor="appeared">Appeared</label>
-            <input type="text" id="appeared" name="appeared" placeholder="Days Appeared" value={appeared} onChange={(e) => setappeared(e.target.value)} required/>
-            <div className="employee-details-actions">
-              <button type="submit">Save</button>
-              <button type="button" onClick={handleEmployeeDetailsClick}>
-                Cancel
-              </button>
-            </div>
-          </form>
-        </div>
-      )}
+              <form className="employee-details-form" onSubmit={handleEmployeeSubmit}>
+                  <label htmlFor="name">Name</label>
+                  <input type="text" id="name" name="name" placeholder="Employee Name" value={name} onChange={(e) => setname(e.target.value)} required/>
+                  <label htmlFor="date-of-join">Date of Join</label>
+                  <input type="date" id="dateofjoin" name="dateofjoin" value={dateofjoin} onChange={(e) => setdateofjoin(e.target.value)} required/>
+                  <label htmlFor="salary">Salary</label>
+                  <input type="text" id="salary" name="salary" placeholder="Salary" value={salary} onChange={(e) => setsalary(e.target.value)} required />
+                  <label htmlFor="appeared">Appeared</label>
+                  <input type="text" id="appeared" name="appeared" placeholder="Days Appeared" value={appeared} onChange={(e) => setappeared(e.target.value)} required/>
+                  <label htmlFor="image">Image</label>
+                  <input type="file" id="image" name="image" accept="image/*" onChange={(e) => setImage(e.target.files[0])} />
+                  <div className="employee-details-actions">
+                  <button type="submit">Save</button>
+                  <button type="button" onClick={handleEmployeeDetailsClick}>
+                  Cancel
+                  </button>
+              </div>
+            </form>
+          </div>
+          )}
        {showIncomeDetails && (
         <div className="employee-details-container">
           <div className="employee-details-title">Income Details</div>

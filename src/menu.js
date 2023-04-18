@@ -194,11 +194,19 @@ const Menu = () => {
               ))}
             </tbody>
           </table></div>
+          <button className="back-arrow" onClick={() => setDrilldown3Visible(false)}>
+            close
+          </button>
         </div>
       )}
       {drilldown4Visible &&(
         <div className="drilldown4">
           <Bill />
+          <div>
+          <button className="back-arrow" onClick={() => setDrilldown4Visible(false)}>
+            close
+          </button>
+          </div>
         </div>
       )}
     </div>

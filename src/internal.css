@@ -559,8 +559,11 @@ td, th {
   cursor: pointer;
 }
 
-.invoice-form button:hover {
+/*.invoice-form button:hover {
   background-color: #3e8e41;
+}*/
+.inv-clear:hover{
+  background-color: red;
 }
 .additem-popup {
   position: fixed;
@@ -572,4 +575,17 @@ td, th {
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
   padding: 20px;
   z-index: 9999;
+}
+.back-arrow {
+  padding: 10px 50px;
+  font-size: 16px;
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.back-arrow:hover {
+  background-color: red;
 }

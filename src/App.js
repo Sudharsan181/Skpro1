@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, FaArrowLeft } from 'react';
 import './App.css';
 import './internal.css';
 import Menu from './menu';
@@ -260,6 +260,9 @@ fetch('https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&sym
         <Area dataKey="y" stackId="1" 
             stroke="blue" fill="blue" />
         </AreaChart>
+        <button className="back-arrow" onClick={() => setDrilldown2Visible(false)}>
+            close
+          </button>
             </div>
         </div>      
       )}

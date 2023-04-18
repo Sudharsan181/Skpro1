@@ -185,7 +185,7 @@ const [showPopup, setShowPopup] = useState(false); // Add this state to control 
             </tr>
           </tfoot>
         </table>
-        <button type="button" onClick={clearFields}>
+        <button type="button" className='inv-clear' onClick={clearFields}>
           Clear
         </button>
         <button type="submit" className="inv-submit">

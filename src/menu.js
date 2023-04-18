@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import "./internal.css";
-import axios from "axios";
 import Bill from "./invoice";
 
 const Menu = () => {
@@ -9,50 +8,7 @@ const Menu = () => {
   const [showExpenseDetails, setShowExpenseDetails] = useState(false);
   const [drilldown3Visible, setDrilldown3Visible] = useState(false);
   const [drilldown4Visible, setDrilldown4Visible] = useState(false);
-  const [data, setData] = useState([]);
 
-  useEffect(() => {
-    axios.get("/api/data")
-    .then(response => {
-      setData(response.data);
-    })
-    .catch(error => {
-      console.log(error);
-    });
-  }, []);
-
-  const [name, setname] = useState("");
-  const [dateofjoin, setdateofjoin] = useState("");
-  const [salary, setsalary] = useState("");
-  const [appeared, setappeared] = useState("");
-  const [image, setImage] = useState(null);
-
-  const handleEmployeeSubmit = (event) => {
-    event.preventDefault();
-
-    const formData = new FormData();
-    formData.append("name", name);
-    formData.append("dateofjoin", dateofjoin);
-    formData.append("salary", salary);
-    formData.append("appeared", appeared);
-    if (image) {
-      formData.append("image", image);
-    }
-
-    axios.post("/api/employees", formData)
-    .then(response => {
-      console.log(response.data);
-      // clear the form
-      setname("");
-      setdateofjoin("");
-      setsalary("");
-      setappeared("");
-      setImage(null);
-    })
-    .catch(error => {
-      console.log(error);
-    });
-  };
 
   const handleEmployeeDetailsClick = () => {
     setShowEmployeeDetails(!showEmployeeDetails);
@@ -107,17 +63,17 @@ const Menu = () => {
       {showEmployeeDetails && (
         <div className="employee-details-container">
           <div className="employee-details-title">Employee Details</div>
-              <form className="employee-details-form" onSubmit={handleEmployeeSubmit}>
+              <form className="employee-details-form">
                   <label htmlFor="name">Name</label>
-                  <input type="text" id="name" name="name" placeholder="Employee Name" value={name} onChange={(e) => setname(e.target.value)} required/>
+                  <input type="text" id="name" name="name" placeholder="Employee Name"  required/>
                   <label htmlFor="date-of-join">Date of Join</label>
-                  <input type="date" id="dateofjoin" name="dateofjoin" value={dateofjoin} onChange={(e) => setdateofjoin(e.target.value)} required/>
+                  <input type="date" id="dateofjoin" name="dateofjoin" required/>
                   <label htmlFor="salary">Salary</label>
-                  <input type="text" id="salary" name="salary" placeholder="Salary" value={salary} onChange={(e) => setsalary(e.target.value)} required />
+                  <input type="text" id="salary" name="salary" placeholder="Salary" required />
                   <label htmlFor="appeared">Appeared</label>
-                  <input type="text" id="appeared" name="appeared" placeholder="Days Appeared" value={appeared} onChange={(e) => setappeared(e.target.value)} required/>
+                  <input type="text" id="appeared" name="appeared" placeholder="Days Appeared" required/>
                   <label htmlFor="image">Image</label>
-                  <input type="file" id="image" name="image" accept="image/*" onChange={(e) => setImage(e.target.files[0])} />
+                  <input type="file" id="image" name="image" accept="image/*" required/>
                   <div className="employee-details-actions">
                   <button type="submit">Save</button>
                   <button type="button" onClick={handleEmployeeDetailsClick}>
@@ -174,29 +130,11 @@ const Menu = () => {
           <Menu />
           <div className="Employee-data">
             <h2>Employee DATA</h2>
-          <table>
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Date of Join</th>
-                <th>Salary</th>
-                <th>Appeared</th>
-              </tr>
-            </thead>
-            <tbody>
-              {data.map((employee, index) => (
-                <tr key={index}>
-                  <td>{employee.name}</td>
-                  <td>{employee.dateofjoin}</td>
-                  <td>{employee.salary}</td>
-                  <td>{employee.appeared}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table></div>
+         
           <button className="back-arrow" onClick={() => setDrilldown3Visible(false)}>
             close
           </button>
+        </div>
         </div>
       )}
       {drilldown4Visible &&(

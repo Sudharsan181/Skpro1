@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from "react";
 import "./internal.css";
-import Bill from "./invoice";
 
 const Menu = () => {
   const [showEmployeeDetails, setShowEmployeeDetails] = useState(false);
   const [showIncomeDetails, setShowIncomeDetails] = useState(false);
   const [showExpenseDetails, setShowExpenseDetails] = useState(false);
   const [drilldown3Visible, setDrilldown3Visible] = useState(false);
-  const [drilldown4Visible, setDrilldown4Visible] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
 
   
@@ -34,9 +32,6 @@ const Menu = () => {
   const toggleDrilldown3 = () => {
     setDrilldown3Visible(!drilldown3Visible);
   };
-  const toggleDrilldown4 = () => {
-    setDrilldown4Visible(!drilldown4Visible)
-  }
   return (
     <div className="menu">
       <div className="menu-logo">SK Farms & Stockers</div>
@@ -53,7 +48,6 @@ const Menu = () => {
             <a href="#" onClick={handleIncomeDetailsClick}>Income Details</a>
             <a href="#" onClick={handleExpenseDetailsClick}>Expenses Details</a>
             <a  href="#" onClick={toggleDrilldown3}>Records&Details</a>
-            <a href="#" onClick={toggleDrilldown4}>Invoice</a>
           </div>
         </div>
         <div className="menu-nav-item">
@@ -153,16 +147,6 @@ const Menu = () => {
             close
           </button>
         </div>
-        </div>
-      )}
-      {drilldown4Visible &&(
-        <div className="drilldown4">
-          <Bill />
-          <div>
-          <button className="back-arrow" onClick={() => setDrilldown4Visible(false)}>
-            close
-          </button>
-          </div>
         </div>
       )}
     </div>

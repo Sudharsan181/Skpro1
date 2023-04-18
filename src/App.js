@@ -2,6 +2,7 @@ import React, { useState, FaArrowLeft } from 'react';
 import './App.css';
 import './internal.css';
 import Menu from './menu';
+import Bill from "./invoice";
 import { Chart } from 'chart.js/auto';
 import {AreaChart, Area} from 'recharts';
 import {
@@ -60,6 +61,7 @@ function App() {
   const [showPopup, setShowPopup] = useState(false);
   const [drilldownVisible, setDrilldownVisible] = useState(false);
   const [drilldown2Visible, setDrilldown2Visible] = useState(false);
+  const [drilldown4Visible, setDrilldown4Visible] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   // Make an API request to Alpha Vantage to retrieve stock exchange data
 const apiKey = 'KQL3AZIGKUUD3O26';
@@ -144,6 +146,9 @@ fetch('https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&sym
     }
   };  
   
+  const toggleDrilldown4 = () => {
+    setDrilldown4Visible(!drilldown4Visible)
+  }
 
   return (
     <div className="App">
@@ -179,6 +184,9 @@ fetch('https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&sym
           </li>
           <li>
             <a href="https://sudharsan181.github.io/">Contact</a>
+          </li>
+          <li>
+          <a href="#" onClick={toggleDrilldown4}>Invoice</a>
           </li>
           <li className="login" onClick={togglePopup}>
             <a href="#">Admin</a>
@@ -265,6 +273,16 @@ fetch('https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&sym
           </button>
             </div>
         </div>      
+      )}
+       {drilldown4Visible &&(
+        <div className="drilldown4">
+          <Bill />
+          <div>
+          <button className="back-arrow" onClick={() => setDrilldown4Visible(false)}>
+            close
+          </button>
+          </div>
+        </div>
       )}
       {showPopup && (
         <div className="popup-overlay">

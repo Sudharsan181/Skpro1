@@ -589,3 +589,15 @@ td, th {
 .back-arrow:hover {
   background-color: red;
 }
+.image-preview-container {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.image-preview {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  margin-right: 10px;
+}

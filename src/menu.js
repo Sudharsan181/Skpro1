@@ -8,7 +8,19 @@ const Menu = () => {
   const [showExpenseDetails, setShowExpenseDetails] = useState(false);
   const [drilldown3Visible, setDrilldown3Visible] = useState(false);
   const [drilldown4Visible, setDrilldown4Visible] = useState(false);
+  const [selectedImage, setSelectedImage] = useState(null);
 
+  
+    function handleImageChange(event) {
+      const file = event.target.files[0];
+      setSelectedImage(file);
+    }
+  
+    function handleEmployeeDetailsSubmit(event) {
+      event.preventDefault();
+      // Here you can access the selected image using the `selectedImage` state variable
+      console.log(selectedImage);
+    }
 
   const handleEmployeeDetailsClick = () => {
     setShowEmployeeDetails(!showEmployeeDetails);
@@ -61,27 +73,33 @@ const Menu = () => {
         <button>Go</button>
       </div>
       {showEmployeeDetails && (
-        <div className="employee-details-container">
-          <div className="employee-details-title">Employee Details</div>
-              <form className="employee-details-form">
-                  <label htmlFor="name">Name</label>
-                  <input type="text" id="name" name="name" placeholder="Employee Name"  required/>
-                  <label htmlFor="date-of-join">Date of Join</label>
-                  <input type="date" id="dateofjoin" name="dateofjoin" required/>
-                  <label htmlFor="salary">Salary</label>
-                  <input type="text" id="salary" name="salary" placeholder="Salary" required />
-                  <label htmlFor="appeared">Appeared</label>
-                  <input type="text" id="appeared" name="appeared" placeholder="Days Appeared" required/>
-                  <label htmlFor="image">Image</label>
-                  <input type="file" id="image" name="image" accept="image/*" required/>
-                  <div className="employee-details-actions">
-                  <button type="submit">Save</button>
-                  <button type="button" onClick={handleEmployeeDetailsClick}>
-                  Cancel
-                  </button>
-              </div>
-            </form>
-          </div>
+       <div className="employee-details-container">
+       <div className="employee-details-title">Employee Details</div>
+       <form className="employee-details-form">
+         <label htmlFor="name">Name</label>
+         <input type="text" id="name" name="name" placeholder="Employee Name" required />
+         <label htmlFor="date-of-join">Date of Join</label>
+         <input type="date" id="dateofjoin" name="dateofjoin" required />
+         <label htmlFor="salary">Salary</label>
+         <input type="text" id="salary" name="salary" placeholder="Salary" required />
+         <label htmlFor="appeared">Appeared</label>
+         <input type="text" id="appeared" name="appeared" placeholder="Days Appeared" required />
+         <input type="file" id="image" name="image" accept="image/*" onChange={handleImageChange} required />
+         {selectedImage && (
+           <div className="image-preview-container">
+              <img className="image-preview" src={URL.createObjectURL(selectedImage)} alt="Selected" />
+           </div>
+         )}
+         <div className="employee-details-actions">
+           <button type="submit" onClick={handleEmployeeDetailsSubmit}>
+             Save
+           </button>
+           <button type="button" onClick={handleEmployeeDetailsClick}>
+             Cancel
+           </button>
+         </div>
+       </form>
+     </div>
           )}
        {showIncomeDetails && (
         <div className="employee-details-container">

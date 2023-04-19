@@ -19,25 +19,47 @@ const Menu = () => {
       event.preventDefault();
     
       const doc = new jsPDF();
-      doc.text("Employee ID Details", 20, 20);
-      doc.text(`Name: ${document.getElementById("name").value}`, 20, 30);
-      doc.text(`Date of Join: ${document.getElementById("dateofjoin").value}`, 20, 40);
-      doc.text(`Salary: ${document.getElementById("salary").value}`, 20, 50);
-      doc.text(`Designation: ${document.getElementById("Designation").value}`, 20, 60);
+      const cardWidth = 100;
+      const cardHeight = 130;
+      const cardMargin = 10;
+      const cardX = (doc.internal.pageSize.getWidth() - cardWidth) / 2;
+      const cardY = (doc.internal.pageSize.getHeight() - cardHeight) / 2;
+    
+      // Set draw color and line width for interactive borders
+      doc.setDrawColor(255, 0, 0);
+      doc.setLineWidth(0.5);
+    
+      // Add interactive borders around the edges of the PDF paper
+      const borderOffset = 5;
+      doc.rect(borderOffset, borderOffset, doc.internal.pageSize.getWidth() - (borderOffset * 2), doc.internal.pageSize.getHeight() - (borderOffset * 2), "S");
+    
+      // Reset draw color and line width for text and images
+      doc.setDrawColor(0);
+      doc.setLineWidth(0);
+    
+      doc.rect(cardX, cardY, cardWidth, cardHeight, "S");
+      doc.setFontSize(12);
+      doc.setTextColor(0, 0, 0);
+    
+      doc.text("Employee ID Details", cardX + cardMargin, cardY + cardMargin + 10);
+      doc.text(`Name: ${document.getElementById("name").value}`, cardX + cardMargin, cardY + cardMargin + 30);
+      doc.text(`Date of Join: ${document.getElementById("dateofjoin").value}`, cardX + cardMargin, cardY + cardMargin + 40);
+      doc.text(`Salary: ${document.getElementById("salary").value}`, cardX + cardMargin, cardY + cardMargin + 50);
+      doc.text(`Designation: ${document.getElementById("Designation").value}`, cardX + cardMargin, cardY + cardMargin + 60);
     
       if (selectedImage) {
         const image = new Image();
         image.onload = function() {
           const imageWidth = 50;
           const imageHeight = (imageWidth * this.height) / this.width;
-          doc.addImage(this, "auto", 20, 70, imageWidth, imageHeight);
+          doc.addImage(this, "auto", cardX + cardMargin, cardY + cardMargin + 70, imageWidth, imageHeight);
           doc.save("employee_id_details.pdf");
         };
         image.src = URL.createObjectURL(selectedImage);
       } else {
         doc.save("employee_id_details.pdf");
       }
-    }    
+    }
   const handleEmployeeIDClick = () => {
     setShowEmployeeID(!showEmployeeID);
   }

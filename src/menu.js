@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
+import jsPDF from "jspdf";
 import "./internal.css";
 
 const Menu = () => {
-  const [showEmployeeDetails, setShowEmployeeDetails] = useState(false);
+  const [showEmployeeID, setShowEmployeeID] = useState(false);
   const [showIncomeDetails, setShowIncomeDetails] = useState(false);
   const [showExpenseDetails, setShowExpenseDetails] = useState(false);
   const [drilldown3Visible, setDrilldown3Visible] = useState(false);
@@ -16,12 +17,29 @@ const Menu = () => {
   
     function handleEmployeeDetailsSubmit(event) {
       event.preventDefault();
-      // Here you can access the selected image using the `selectedImage` state variable
-      console.log(selectedImage);
-    }
-
-  const handleEmployeeDetailsClick = () => {
-    setShowEmployeeDetails(!showEmployeeDetails);
+    
+      const doc = new jsPDF();
+      doc.text("Employee ID Details", 20, 20);
+      doc.text(`Name: ${document.getElementById("name").value}`, 20, 30);
+      doc.text(`Date of Join: ${document.getElementById("dateofjoin").value}`, 20, 40);
+      doc.text(`Salary: ${document.getElementById("salary").value}`, 20, 50);
+      doc.text(`Designation: ${document.getElementById("Designation").value}`, 20, 60);
+    
+      if (selectedImage) {
+        const image = new Image();
+        image.onload = function() {
+          const imageWidth = 50;
+          const imageHeight = (imageWidth * this.height) / this.width;
+          doc.addImage(this, "auto", 20, 70, imageWidth, imageHeight);
+          doc.save("employee_id_details.pdf");
+        };
+        image.src = URL.createObjectURL(selectedImage);
+      } else {
+        doc.save("employee_id_details.pdf");
+      }
+    }    
+  const handleEmployeeIDClick = () => {
+    setShowEmployeeID(!showEmployeeID);
   }
   const handleIncomeDetailsClick = () => {
     setShowIncomeDetails(!showIncomeDetails);
@@ -42,8 +60,8 @@ const Menu = () => {
         <div className="menu-nav-item">
           <a href="#">Data</a>
           <div className="menu-nav-dropdown">
-            <a href="#"onClick={handleEmployeeDetailsClick}>
-              Employee Details
+            <a href="#"onClick={handleEmployeeIDClick}>
+              Employees ID
             </a>
             <a href="#" onClick={handleIncomeDetailsClick}>Income Details</a>
             <a href="#" onClick={handleExpenseDetailsClick}>Expenses Details</a>
@@ -66,18 +84,18 @@ const Menu = () => {
         <input type="text" placeholder="Search" />
         <button>Go</button>
       </div>
-      {showEmployeeDetails && (
+      {showEmployeeID && (
        <div className="employee-details-container">
-       <div className="employee-details-title">Employee Details</div>
+       <div className="employee-details-title">Employee ID</div>
        <form className="employee-details-form">
          <label htmlFor="name">Name</label>
          <input type="text" id="name" name="name" placeholder="Employee Name" required />
-         <label htmlFor="date-of-join">Date of Join</label>
+         <label htmlFor="dateofjoin">Date of Join</label>
          <input type="date" id="dateofjoin" name="dateofjoin" required />
          <label htmlFor="salary">Salary</label>
          <input type="text" id="salary" name="salary" placeholder="Salary" required />
-         <label htmlFor="appeared">Appeared</label>
-         <input type="text" id="appeared" name="appeared" placeholder="Days Appeared" required />
+         <label htmlFor="Designation">Designation</label>
+         <input type="text" id="Designation" name="Designation" placeholder="Designation" required />
          <input type="file" id="image" name="image" accept="image/*" onChange={handleImageChange} required />
          {selectedImage && (
            <div className="image-preview-container">
@@ -86,9 +104,9 @@ const Menu = () => {
          )}
          <div className="employee-details-actions">
            <button type="submit" onClick={handleEmployeeDetailsSubmit}>
-             Save
+             Get
            </button>
-           <button type="button" onClick={handleEmployeeDetailsClick}>
+           <button type="button" onClick={handleEmployeeIDClick}>
              Cancel
            </button>
          </div>

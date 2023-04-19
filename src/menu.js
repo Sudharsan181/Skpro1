@@ -7,6 +7,7 @@ const Menu = () => {
   const [showIncomeDetails, setShowIncomeDetails] = useState(false);
   const [showExpenseDetails, setShowExpenseDetails] = useState(false);
   const [drilldown3Visible, setDrilldown3Visible] = useState(false);
+  const [drilldown5Visible, setDrilldown5Visible] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
 
   
@@ -72,6 +73,9 @@ const Menu = () => {
   const toggleDrilldown3 = () => {
     setDrilldown3Visible(!drilldown3Visible);
   };
+  const toggleDrilldown5 = () => {
+    setDrilldown5Visible(!drilldown5Visible);
+  };
   return (
     <div className="menu">
       <div className="menu-logo">SK Farms & Stockers</div>
@@ -88,6 +92,7 @@ const Menu = () => {
             <a href="#" onClick={handleIncomeDetailsClick}>Income Details</a>
             <a href="#" onClick={handleExpenseDetailsClick}>Expenses Details</a>
             <a  href="#" onClick={toggleDrilldown3}>Records&Details</a>
+            <a  href="#" onClick={toggleDrilldown5}>ID Genrate</a>
           </div>
         </div>
         <div className="menu-nav-item">
@@ -183,6 +188,16 @@ const Menu = () => {
           <div className="Employee-data">
             <h2>Employee DATA</h2>
          
+          <button className="back-arrow" onClick={() => setDrilldown3Visible(false)}>
+            close
+          </button>
+        </div>
+        </div>
+      )}
+      {drilldown5Visible && (
+        <div className="drilldown5">
+          <Menu />
+          <div className="Employee-data">
           <button className="back-arrow" onClick={() => setDrilldown3Visible(false)}>
             close
           </button>

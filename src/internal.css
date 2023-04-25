@@ -615,3 +615,137 @@ td, th {
   object-fit: cover;
   margin-right: 10px;
 }
+/* Employee ID Card Container */
+.employee-id-card-container {
+  max-width: 700px;
+  margin: auto;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  font-family: Arial, sans-serif;
+  color: #444;
+}
+
+/* Employee ID Card Heading */
+.employee-id-card-heading {
+  font-size: 2rem;
+  text-align: center;
+}
+
+/* Employee ID Card Label */
+.employee-id-card-label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 1rem;
+}
+
+/* Employee ID Card Input */
+.employee-id-card-input {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+/* Employee ID Card Textarea */
+.employee-id-card-textarea {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  resize: none;
+  height: 100px;
+}
+
+/* Employee ID Card Photo */
+.employee-id-card-photo {
+  display: block;
+  margin: auto;
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 20px;
+}
+
+/* Employee ID Card Button */
+.employee-id-card-button {
+  display: block;
+  margin: auto;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.employee-id-card-button:hover {
+  background-color: #0069d9;
+}
+
+/* Employee ID Card */
+.employee-id-card {
+  max-width: 400px;
+  margin: auto;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  font-family: Arial, sans-serif;
+  color: #444;
+}
+
+/* Employee ID Card Name */
+.employee-id-card-name {
+  font-size: 1.5rem;
+  margin-top: 0;
+  text-align: center;
+}
+
+/* Employee ID Card Designation */
+.employee-id-card-designation {
+  font-size: 1rem;
+  margin: 0;
+  text-align: center;
+}
+
+/* Employee ID Card HR */
+.employee-id-card-hr {
+  margin: 10px 0;
+  border: none;
+  height: 1px;
+  background-color: #ccc;
+}
+
+/* Employee ID Card Department */
+.employee-id-card-department {
+  margin: 0;
+  font-size: 1rem;
+}
+
+/* Employee ID Card DOB */
+.employee-id-card-dob {
+  margin: 0;
+  font-size: 1rem;
+}
+
+/* Employee ID Card Blood Group */
+.employee-id-card-blood-group {
+  margin: 0;
+  font-size: 1rem;
+}
+
+/* Employee ID Card Date of Join */
+.employee-id-card-date-of-join {
+  margin: 0;
+  font-size: 1rem;
+}
+

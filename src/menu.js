@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import jsPDF from "jspdf";
+import EmployeeIDCard from "./EmpID";
 import "./internal.css";
 
 const Menu = () => {
@@ -198,6 +199,9 @@ const Menu = () => {
         <div className="drilldown5">
           <Menu />
           <div className="Employee-data">
+            <div>
+              <EmployeeIDCard />
+            </div>
           <button className="back-arrow" onClick={() => setDrilldown3Visible(false)}>
             close
           </button>

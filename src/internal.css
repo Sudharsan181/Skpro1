@@ -3,6 +3,8 @@ body{
     background-repeat: no-repeat;
     background-size: cover;
     background-position: fixed;
+    height: auto;
+    width: auto;
 }
 .Header{
     font-size: 28px;

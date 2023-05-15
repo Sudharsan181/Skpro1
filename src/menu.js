@@ -146,13 +146,13 @@ const Menu = () => {
           <div className="employee-details-title">Income Details</div>
           <form className="employee-details-form">
             <label htmlFor="name">Income</label>
-            <input type="text" id="name" name="name" placeholder="Income" required/>
+            <input type="text" id="Income" name="Income" placeholder="Income" required/>
             <label htmlFor="date-of-join\">Date of Entry</label>
-            <input type="date" id="date-of-join" name="date-of-join" required />
+            <input type="date" id="dateofrecord" name="dateofrecord" required />
             <label htmlFor="salary">Profit Percentage</label>
-            <input type="text" id="salary" name="salary" placeholder="Profit Percentage" required/>
+            <input type="text" id="profit" name="profit" placeholder="Profit Percentage" required/>
             <label htmlFor="appeared">Days In Count</label>
-            <input type="text" id="appeared" name="appeared" placeholder="Days In Count" required/>
+            <input type="text" id="daysincount" name="daysincount" placeholder="Days In Count" required/>
             <div className="employee-details-actions">
               <button type="submit">Save</button>
               <button type="button" onClick={handleIncomeDetailsClick}>
@@ -202,7 +202,7 @@ const Menu = () => {
             <div>
               <EmployeeIDCard />
             </div>
-          <button className="back-arrow" onClick={() => setDrilldown3Visible(false)}>
+          <button className="back-arrow" onClick={() => setDrilldown5Visible(false)}>
             close
           </button>
         </div>
